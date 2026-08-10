@@ -1,4 +1,64 @@
-.cta {
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atomic Habits — Digital Edition</title>
+  <style>
+    :root { font-family: Arial, Helvetica, sans-serif; color: #f5f5f5; background: #05090c; font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; min-height: 100vh; overflow-x: hidden; background: #05090c; }
+    /* body::after { content: ''; position: fixed; z-index: 10; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, #ff1450 0 74%, #161b1e 74%); pointer-events: none; } */
+    .page { width: min(100%, 520px); margin: 0 auto; padding: 18px 30px 46px; text-align: center; }
+    .brand { height: 31px; display: flex; justify-content: center; align-items: center; gap: 14px; }
+    .amazon { position: relative; font-size: 20px; line-height: 1; font-weight: 800; color: #bfc1c3; letter-spacing: -.8px; }
+    .amazon::after { content: ''; position: absolute; left: 12px; bottom: -4px; width: 39px; height: 9px; border-bottom: 3px solid #2b75ce; border-radius: 50%; transform: rotate(5deg); }
+    .divider { height: 20px; width: 1px; background: #5b6165; }
+    .edition { padding: 6px 12px; border: 1px solid #402b1c; border-radius: 20px; color: #ff9139; background: #1e1510; font-size: 10px; font-weight: 800; letter-spacing: .6px; }
+    h1 { margin: 27px 0 11px; font-size: clamp(25px, 7vw, 36px); line-height: .99; letter-spacing: -1.5px; font-weight: 900; }
+    h1 span { color: #ff911c; }
+    .subtitle { max-width: 350px; margin: 0 auto; color: #c7cacf; font-size: 11px; line-height: 1.55; }
+  
+    .book-card { position: relative; margin: 20px auto 18px; width: min(100%, 470px); height: min(100%, 314px); overflow: hidden; border: 1px solid #684326; border-radius: 16px; background: radial-gradient(circle at 54% 25%, #684523 0, #4b2d1b 45%, #2a1a12 100%); box-shadow: 0 0 22px rgba(236, 126, 29, .22), inset 0 0 34px rgba(255, 160, 56, .1); display: flex; flex-direction: column; }
+    .book-card::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 1px 0 rgba(255, 184, 92, .12); }
+    .book-wrap { flex: 0 0 190px; display: grid; place-items: center; padding-top: 13px; }
+    .book { position: relative; width: 200px; height: 258px; transform: perspective(600px) rotateY(-2deg); border-radius: 1px 6px 6px 1px; background: #f5e5d2; box-shadow: -11px 0 0 #087575, 7px 6px 0 #075959, 12px 9px 16px rgba(0,0,0,.42); color: #713720; }
+    .book::before { content: ''; position: absolute; inset: 0; border-right: 5px solid rgba(93, 43, 22, .25); background: repeating-linear-gradient(90deg, transparent 0 4px, rgba(120,65,36,.04) 5px 6px); }
+    .book-top { padding-top: 12px; font-size: 8px; font-weight: 700; }
+    .book-title { position: relative; margin-top: 10px; color: #ee9b57; font-size: 28px; line-height: .87; font-weight: 400; letter-spacing: -1.8px; }
+    .book-title strong { display: block; color: #a95c26; font-size: 31px; font-weight: 700; }
+    .book-copy { position: relative; margin: 10px auto 0; width: 96px; font-size: 7px; line-height: 1.2; font-weight: 700; color: #2d2c29; }
+    .book-copy b { display: block; margin-top: 3px; font-size: 12px; }
+    .book-author { position: absolute; left: 0; right: 0; bottom: 9px; font-size: 12px; font-weight: 800; }
+   
+    .features { flex: 0 0 72px; margin: 15px 18px 10px; padding: 10px 12px 8px; border: 1px solid rgba(255, 184, 92, .08); border-radius: 9px; background: rgba(92, 57, 27, .48); text-align: left; }
+    .features p { margin: 4px 0; color: #e5ded7; font-size: 9px; line-height: 1.4; }
+    .features b { color: #ff9637; margin-right: 5px; font-size: 9px; }
+   
+    .details { flex: 0 0 51px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 10px 18px 15px; background: rgba(15, 10, 6, .38); border-top: 1px solid rgba(255,255,255,.08); text-align: left; }
+    .detail { color: #aaa29b; font-size: 8px; font-weight: 700; letter-spacing: .5px; }
+    .detail strong { display: block; margin-top: 4px; color: #efefef; font-size: 9px; letter-spacing: 0; }
+    .detail strong.green { color: #37dd7b; }
+   
+    .price { text-align: right; }
+    .price s { color: #77736e; font-weight: 400; margin-right: 6px; }
+    .price b { color: #31db72; font-size: 15px; }
+
+
+    
+    .progress-box { padding: 13px 14px 14px; border: 1px solid #20272d; border-radius: 11px; background: #11171c; box-shadow: 0 4px 12px rgba(0,0,0,.18); }
+    .progress-label { display: flex; justify-content: space-between; margin-bottom: 9px; font-size: 10px; font-weight: 800; }
+    .progress-label strong { color: #ff9637; }
+    .progress-label span { color: #a8adb0; }
+    .track { height: 7px; border-radius: 10px; background: #293036; overflow: hidden; }
+    .track i { display: block; width: 82%; height: 100%; border-radius: inherit; background: #ff9418; box-shadow: 0 0 9px rgba(255,148,24,.65); }
+
+    
+    .steps { margin: 20px 0 22px; text-align: left; }
+    .step { display: flex; align-items: center; gap: 12px; margin: 14px 0; color: #e5e6e7; font-size: 11px; line-height: 1.35; }
+    .number { flex: 0 0 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; color: #f1bf94; background: #422316; font-size: 11px; font-weight: 800; }
+    
+    .cta {
   width: 100%;
   border: 0;
   border-radius: 13px;
@@ -42,3 +102,61 @@
   width: 20px;
   height: 20px;
 }
+
+
+    .fine-print { margin: 13px auto 0; max-width: 330px; color: #92999e; font-size: 9px; line-height: 1.5; }
+    .toast { position: fixed; z-index: 50; top: 18px; left: 50%; width: min(360px, calc(100vw - 32px)); display: flex; align-items: center; gap: 13px; padding: 14px 16px; border: 1px solid rgba(255,255,255,.14); border-radius: 16px; background: rgba(22, 26, 30, .55); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); box-shadow: 0 12px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08); text-align: left; transform: translate(-50%, -160%); opacity: 0; transition: transform .5s cubic-bezier(.16,1,.3,1), opacity .4s ease; }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+    .toast-icon { width: 38px; height: 38px; display: grid; place-items: center; flex: 0 0 38px; border-radius: 50%; color: white; background: linear-gradient(135deg, #2ee67a, #15b85f); box-shadow: 0 4px 12px rgba(37,206,118,.4); font-size: 18px; }
+    .toast small { display: block; margin-bottom: 3px; color: #8b9499; font-size: 9px; font-weight: 800; letter-spacing: 1.2px; }
+    .toast p { margin: 0; color: #f0f2f3; font-size: 12px; font-weight: 700; line-height: 1.25; }
+    .toast p b { color: #4ade80; }
+    .toast .close { margin-left: auto; flex: 0 0 auto; width: 22px; height: 22px; display: grid; place-items: center; border: 0; border-radius: 50%; color: #8b9499; background: rgba(255,255,255,.06); font-size: 14px; line-height: 1; cursor: pointer; transition: color .2s, background .2s; }
+    .toast .close:hover { color: #fff; background: rgba(255,255,255,.14); }
+    @media (max-width: 380px) { .page { padding-left: 18px; padding-right: 18px; } .book-card { height: 233px; } }
+  </style>
+  <meta property="og:image" content="https://bolt.new/static/og_default.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
+</head>
+<body>
+  <main class="page">
+    <div class="brand"><span class="amazon">amazon</span><span class="divider"></span><span class="edition">DIGITAL EDITION</span></div>
+    <h1>DOWNLOAD <span>ATOMIC<br>HABITS</span><br>PDF EDITION</h1>
+    <p class="subtitle">Get the #1 Amazon Bestseller by James Clear. Learn how to build good habits, break bad ones, and master the tiny behaviors that lead to remarkable results.</p>
+   
+ <section class="book-card" aria-label="Atomic Habits digital edition preview">
+      <div class="book-wrap"><div class="book"><div class="book-top">Tiny Changes,<br>Remarkable Results</div><div class="book-title">Atomic<strong>Habits</strong></div><div class="book-copy">An Easy and Proven Way to Build Good Habits and Break Bad Ones<b>James Clear</b></div><div class="book-author">James Clear</div></div></div>
+      <div class="features"><p><b>✓</b>Instant Digital Access</p><p><b>✓</b>320 Pages · PDF Format</p><p><b>✓</b>Compatible with All Devices</p></div>
+      <div class="details"><div class="detail">FILE STATUS<strong class="green">● Instant PDF Access</strong></div><div class="detail price">RETAIL PRICE<strong><s>$27.00</s><b>FREE</b></strong></div></div>
+    </section>
+    <section class="progress-box"><div class="progress-label"><strong>FREE DOWNLOADS LEFT: 18 COPIES</strong><span>82% CLAIMED</span></div><div class="track"><i></i></div></section>
+    <div class="steps"><div class="step"><span class="number">1</span><span>Click the button below to start instant verification.</span></div><div class="step"><span class="number">2</span><span>Complete <b>ONE</b> quick &amp; simple offer to unlock the file link.</span></div><div class="step"><span class="number">3</span><span>Your Atomic Habits PDF download will start automatically!</span></div></div>
+    
+    <button class="cta" type="button" id="download"><span class="cta-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-to-line-icon lucide-arrow-down-to-line"><path d="M12 17V3"/><path d="m6 11 6 6 6-6"/><path d="M19 21H5"/></svg></span> COMPLETE 1 OFFER TO DOWNLOAD</button>
+    
+    <p class="fine-print">*Verification is required to prevent automated bots &amp; ensure free access for real readers.</p>
+  </main>
+  <aside class="toast" id="toast" aria-live="polite"><span class="toast-icon">✓</span><div><small>RECENT DOWNLOAD</small><p><b id="person">@emma_books</b> just unlocked the E-Book!</p></div><button class="close" id="toastClose" aria-label="Dismiss">×</button></aside>
+  
+  
+  <script>
+    const toast = document.querySelector('#toast');
+    const person = document.querySelector('#person');
+    const names = ['@emma_books', '@jordan_reads', '@sarah_habits', '@mike_digital'];
+    let index = 0;
+    let toastTimer;
+    function showDownload() {
+      person.textContent = names[index % names.length];
+      toast.classList.add('show');
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => toast.classList.remove('show'), 4600);
+      index += 1;
+    }
+    document.querySelector('#toastClose').addEventListener('click', () => { toast.classList.remove('show'); window.clearTimeout(toastTimer); });
+    window.setTimeout(showDownload, 1800);
+    window.setInterval(showDownload, 9000);
+    document.querySelector('#download').addEventListener('click', showDownload);
+  </script>
+</body>
+</html>
