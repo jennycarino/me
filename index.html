@@ -140,23 +140,52 @@
   <aside class="toast" id="toast" aria-live="polite"><span class="toast-icon">✓</span><div><small>RECENT DOWNLOAD</small><p><b id="person">@emma_books</b> just unlocked the E-Book!</p></div><button class="close" id="toastClose" aria-label="Dismiss">×</button></aside>
   
   
-  <script>
+   <script>
     const toast = document.querySelector('#toast');
     const person = document.querySelector('#person');
-    const names = ['@emma_books', '@jordan_reads', '@sarah_habits', '@mike_digital'];
+
+    const names = [
+      '@emma_books',
+      '@jordan_reads',
+      '@sarah_habits',
+      '@mike_digital'
+    ];
+
     let index = 0;
     let toastTimer;
+
     function showDownload() {
       person.textContent = names[index % names.length];
+
       toast.classList.add('show');
+
       window.clearTimeout(toastTimer);
-      toastTimer = window.setTimeout(() => toast.classList.remove('show'), 4600);
+
+      toastTimer = window.setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4600);
+
       index += 1;
     }
-    document.querySelector('#toastClose').addEventListener('click', () => { toast.classList.remove('show'); window.clearTimeout(toastTimer); });
+
+    document
+      .querySelector('#toastClose')
+      .addEventListener('click', () => {
+        toast.classList.remove('show');
+        window.clearTimeout(toastTimer);
+      });
+
     window.setTimeout(showDownload, 1800);
+
     window.setInterval(showDownload, 9000);
-    document.querySelector('#download').addEventListener('click', showDownload);
+
+    /* CTA REDIRECT */
+    document
+      .querySelector('#download')
+      .addEventListener('click', () => {
+        window.location.href = 'https://app.hawktrk.com/click?pid=2&offer_id=17183&sub2=u823294&sub5=s1SUBID1HERE';
+      });
   </script>
+
 </body>
 </html>
