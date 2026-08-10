@@ -1,0 +1,44 @@
+.cta {
+  width: 100%;
+  border: 0;
+  border-radius: 13px;
+  padding: 15px 14px;
+  color: #171717;
+  background: #ff9818;
+  box-shadow: 0 6px 18px rgba(255, 135, 12, .2);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+
+  /* Align icon and text properly */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  background: #ffab3b;
+}
+
+.cta:active {
+  transform: translateY(0);
+}
+
+.cta-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+}
+
+.cta-icon svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
